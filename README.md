@@ -1,16 +1,16 @@
 # DungeonGunnerCourse
 
-Release version:  
+Release version:
 Coming soon
-
-Video gameplay:  
+ 
+Video gameplay:
 Coming soon
 
 ## Overview
 
 DungeonGunnerCourse is a 2D top-down dungeon shooter built in Unity. The player selects a character, explores procedurally generated dungeon levels, clears enemy rooms, collects chest rewards, manages weapons and ammo, and fights boss encounters to progress through the run.
 
-The project focuses on a complete gameplay loop rather than a single isolated prototype: procedural dungeon generation, room-based combat, character selection, weapons, enemies, chests, score, high scores, minimap support, audio, VFX, and UI are all connected into one playable structure.
+The project focuses on a complete gameplay loop rather than a single isolated prototype: procedural dungeon generation, room-based combat, character selection, weapons, enemies, chests, score, high scores, minimap support, audio, VFX, and UI are all connected into one playable structure. Designers author room templates, room node graphs, enemy pools, chest reward tables, weapons, ammo, music, and character data as ScriptableObjects and prefabs, and the game assembles a playable run from that authored content at runtime.
 
 ## Gameplay
 
@@ -20,7 +20,7 @@ The project focuses on a complete gameplay loop rather than a single isolated pr
 - Use mouse aiming, projectile weapons, reload timing, and dodge rolling during combat.
 - Collect health, ammo, and weapon rewards from chests.
 - Build score through enemy kills and an accuracy-based multiplier.
-- Progress across multiple dungeon levels and boss encounters.
+- Progress across multiple dungeon levels and reach boss encounters after regular rooms are cleared.
 
 ## Core Features
 
@@ -40,7 +40,7 @@ The project focuses on a complete gameplay loop rather than a single isolated pr
 - Universal Render Pipeline
 - Cinemachine camera support
 - ScriptableObject-based content authoring
-- Custom room node graph workflow
+- Custom room node graph workflow with a custom editor
 - Component-based actor design
 - Global and local event systems
 - Object pooling
@@ -71,6 +71,8 @@ The project focuses on a complete gameplay loop rather than a single isolated pr
 | Enemies | Supports materialization, A* chase movement, ranged weapon AI, line-of-sight checks, health, and score rewards. |
 | Weapons | Uses reusable runtime weapon state backed by ScriptableObject weapon and ammo definitions. |
 | Chests | Spawns rewards on room entry or after combat, including health, ammo, and weapons. |
+| Scoring | Event-driven score and accuracy multiplier, clamped and persisted as high scores on win or loss. |
+| Audio & VFX | Data-driven music, sound effects, and particle effects played through pooled objects. |
 | UI | Displays player health, weapon status, ammo, score multiplier, menus, high scores, minimap, and dungeon overview. |
 
 ## Project Structure
@@ -82,6 +84,8 @@ The project focuses on a complete gameplay loop rather than a single isolated pr
 | `Assets/ScriptableObjectAssets` | Data assets for players, enemies, weapons, rooms, levels, sounds, and dungeon graphs. |
 | `Assets/Scenes` | Main menu, gameplay, character selector, instructions, and high score scenes. |
 | `DOCs` | Additional GDD and codebase architecture documentation. |
+
+Within `Assets/Scripts`, code is organized by system, including: `AStar`, `Chests`, `Dungeon`, `DungeonMap`, `Effects`, `Enemies`, `Environment`, `GameManager`, `Health`, `Minimap`, `Movement`, `NodeGraph`, `Player`, `PoolManager`, `Sounds`, `StaticEvents`, `UI`, `Utilities`, and `Weapons`.
 
 ## Documentation
 
