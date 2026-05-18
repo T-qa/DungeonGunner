@@ -1,6 +1,6 @@
 # 🎮 Dungeon Gunner
 
-DungeonGunnerCourse is a 2D top-down dungeon shooter built in **Unity**. The player selects a character, explores procedurally generated dungeon levels, clears enemy rooms, collects chest rewards, manages weapons and ammo, and fights boss encounters to progress through the run.
+Dungeon Gunner is a 2D top-down dungeon shooter built in **Unity**. The player selects a character, explores procedurally generated dungeon levels, clears enemy rooms, collects chest rewards, manages weapons and ammo, and fights boss encounters to progress through the run.
 
 The project focuses on a complete gameplay loop rather than a single isolated prototype: procedural dungeon generation, room-based combat, character selection, weapons, enemies, chests, score, high scores, minimap support, audio, VFX, and UI are all connected into one playable structure.
 
