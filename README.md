@@ -1,16 +1,26 @@
-# DungeonGunnerCourse
+# 🎮 Dungeon Gunner
 
-Release version:
-Coming soon
- 
-Video gameplay:
-Coming soon
+DungeonGunnerCourse is a 2D top-down dungeon shooter built in **Unity**. The player selects a character, explores procedurally generated dungeon levels, clears enemy rooms, collects chest rewards, manages weapons and ammo, and fights boss encounters to progress through the run.
+
+The project focuses on a complete gameplay loop rather than a single isolated prototype: procedural dungeon generation, room-based combat, character selection, weapons, enemies, chests, score, high scores, minimap support, audio, VFX, and UI are all connected into one playable structure.
+
+<p align="center">
+  <a href="https://qanht.itch.io/dungeon-gunner">
+    <img src="https://img.shields.io/badge/🎮_Play_on_itch.io-Dungeon_Gunner-fa5c5c?style=for-the-badge&logo=itchdotio&logoColor=white" />
+  </a>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Status-Active%20Development-brightgreen" />
+  <img src="https://img.shields.io/badge/Unity-6000.3.10f1-blue" />
+  <img src="https://img.shields.io/badge/License-MIT-green" />
+</p>
+
+---
 
 ## Overview
 
-DungeonGunnerCourse is a 2D top-down dungeon shooter built in Unity. The player selects a character, explores procedurally generated dungeon levels, clears enemy rooms, collects chest rewards, manages weapons and ammo, and fights boss encounters to progress through the run.
-
-The project focuses on a complete gameplay loop rather than a single isolated prototype: procedural dungeon generation, room-based combat, character selection, weapons, enemies, chests, score, high scores, minimap support, audio, VFX, and UI are all connected into one playable structure. Designers author room templates, room node graphs, enemy pools, chest reward tables, weapons, ammo, music, and character data as ScriptableObjects and prefabs, and the game assembles a playable run from that authored content at runtime.
+Designers author room templates, room node graphs, enemy pools, chest reward tables, weapons, ammo, music, and character data as ScriptableObjects and prefabs. At runtime the game selects a room graph, places compatible room templates without overlap, connects matching doorways, and activates combat encounters as the player enters rooms — assembling a complete, variable run from authored content.
 
 ## Gameplay
 
