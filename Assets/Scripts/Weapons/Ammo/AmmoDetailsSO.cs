@@ -136,7 +136,6 @@ public class AmmoDetailsSO : ScriptableObject
 
     #region Validation
 #if UNITY_EDITOR
-    // Validate the scriptable object details entered
     private void OnValidate()
     {
         HelperUtilities.ValidateCheckEmptyString(this, nameof(ammoName), ammoName);

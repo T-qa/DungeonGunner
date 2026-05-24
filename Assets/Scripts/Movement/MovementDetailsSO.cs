@@ -30,9 +30,6 @@ public class MovementDetailsSO : ScriptableObject
     #endregion
     public float rollCooldownTime; // for player
 
-    /// <summary>
-    /// Get a random movement speed between the minimum and maximum values
-    /// </summary>
     public float GetMoveSpeed()
     {
         if (minMoveSpeed == maxMoveSpeed)

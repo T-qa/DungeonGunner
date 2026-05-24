@@ -55,7 +55,6 @@ public class Enemy : MonoBehaviour
 
     private void Awake()
     {
-        // Load components
         healthEvent = GetComponent<HealthEvent>();
         health = GetComponent<Health>();
         aimWeaponEvent = GetComponent<AimWeaponEvent>();
@@ -74,19 +73,14 @@ public class Enemy : MonoBehaviour
 
     private void OnEnable()
     {
-        //subscribe to health event
         healthEvent.OnHealthChanged += HealthEvent_OnHealthLost;
     }
 
     private void OnDisable()
     {
-        //subscribe to health event
         healthEvent.OnHealthChanged -= HealthEvent_OnHealthLost;
     }
 
-    /// <summary>
-    /// Handle health lost event
-    /// </summary>
     private void HealthEvent_OnHealthLost(HealthEvent healthEvent, HealthEventArgs healthEventArgs)
     {
         if (healthEventArgs.healthAmount <= 0)
@@ -95,9 +89,6 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Enemy destroyed
-    /// </summary>
     private void EnemyDestroyed()
     {
         DestroyedEvent destroyedEvent = GetComponent<DestroyedEvent>();
@@ -105,9 +96,6 @@ public class Enemy : MonoBehaviour
     }
 
 
-    /// <summary>
-    /// Initialise the enemy
-    /// </summary>
     public void EnemyInitialization(EnemyDetailsSO enemyDetails, int enemySpawnNumber, DungeonLevelSO dungeonLevel)
     {
         this.enemyDetails = enemyDetails;
@@ -120,26 +108,17 @@ public class Enemy : MonoBehaviour
 
         SetEnemyAnimationSpeed();
 
-        // Materialise enemy
         StartCoroutine(MaterializeEnemy());
     }
 
-    /// <summary>
-    /// Set enemy movement update frame
-    /// </summary>
     private void SetEnemyMovementUpdateFrame(int enemySpawnNumber)
     {
-        // Set frame number that enemy should process it's updates
         enemyMovementAI.SetUpdateFrameNumber(enemySpawnNumber % Settings.targetFrameRateToSpreadPathfindingOver);
     }
 
 
-    /// <summary>
-    /// Set the starting health for the enemy
-    /// </summary>
     private void SetEnemyStartingHealth(DungeonLevelSO dungeonLevel)
     {
-        // Get the enemy health for the dungeon level
         foreach (EnemyHealthDetails enemyHealthDetails in enemyDetails.enemyHealthDetailsArray)
         {
             if (enemyHealthDetails.dungeonLevel == dungeonLevel)
@@ -151,53 +130,39 @@ public class Enemy : MonoBehaviour
         health.SetStartingHealth(Settings.defaultEnemyHealth);
     }
 
-    /// <summary>
-    /// Set enemy starting weapon as per the weapon details SO
-    /// </summary>
     private void SetEnemyStartingWeapon()
     {
-        // Process if enemy has a weapon
         if (enemyDetails.enemyWeapon != null)
         {
             Weapon weapon = new Weapon() { weaponDetails = enemyDetails.enemyWeapon, weaponReloadTimer = 0f, weaponClipRemainingAmmo = enemyDetails.enemyWeapon.weaponClipAmmoCapacity, weaponRemainingAmmo = enemyDetails.enemyWeapon.weaponAmmoCapacity, isWeaponReloading = false };
 
-            //Set weapon for enemy
             setActiveWeaponEvent.CallSetActiveWeaponEvent(weapon);
 
         }
     }
 
-    /// <summary>
-    /// Set enemy animator speed to match movement speed
-    /// </summary>
     private void SetEnemyAnimationSpeed()
     {
-        // Set animator speed to match movement speed
         animator.speed = enemyMovementAI.moveSpeed / Settings.baseSpeedForEnemyAnimations;
     }
 
     private IEnumerator MaterializeEnemy()
     {
-        // Disable collider, Movement AI and Weapon AI
         EnemyEnable(false);
 
         yield return StartCoroutine(materializeEffect.MaterializeRoutine(enemyDetails.enemyMaterializeShader, enemyDetails.enemyMaterializeColor, enemyDetails.enemyMaterializeTime, spriteRendererArray, enemyDetails.enemyStandardMaterial));
 
-        // Enable collider, Movement AI and Weapon AI
         EnemyEnable(true);
 
     }
 
     private void EnemyEnable(bool isEnabled)
     {
-        // Enable/Disable colliders
         circleCollider2D.enabled = isEnabled;
         polygonCollider2D.enabled = isEnabled;
 
-        // Enable/Disable movement AI
         enemyMovementAI.enabled = isEnabled;
 
-        // Enable / Disable Fire Weapon
         fireWeapon.enabled = isEnabled;
 
     }

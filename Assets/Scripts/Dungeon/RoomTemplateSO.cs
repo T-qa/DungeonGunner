@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
@@ -117,9 +117,6 @@ public class RoomTemplateSO : ScriptableObject
 
     public List<RoomEnemySpawnParameters> roomEnemySpawnParametersList;
 
-    /// <summary>
-    /// Returns the list of Entrances for the room template
-    /// </summary>
     public List<Doorway> GetDoorwayList()
     {
         return doorwayList;
@@ -129,10 +126,8 @@ public class RoomTemplateSO : ScriptableObject
 
 #if UNITY_EDITOR
 
-    // Validate SO fields
     private void OnValidate()
     {
-        // Set unique GUID if empty or the prefab changes
         if (guid == "" || previousPrefab != prefab)
         {
             guid = GUID.Generate().ToString();
@@ -146,7 +141,6 @@ public class RoomTemplateSO : ScriptableObject
 
         HelperUtilities.ValidateCheckEnumerableValues(this, nameof(doorwayList), doorwayList);
 
-        // Check enemies and room spawn parameters for levels
         if (enemiesByLevelList.Count > 0 || roomEnemySpawnParametersList.Count > 0)
         {
             HelperUtilities.ValidateCheckEnumerableValues(this, nameof(enemiesByLevelList), enemiesByLevelList);
@@ -161,7 +155,6 @@ public class RoomTemplateSO : ScriptableObject
 
                 bool isEnemyTypesListForDungeonLevel = false;
 
-                // Validate enemy types list
                 foreach (SpawnableObjectsByLevel<EnemyDetailsSO> dungeonObjectsByLevel in enemiesByLevelList)
                 {
                     if (dungeonObjectsByLevel.dungeonLevel == roomEnemySpawnParameters.dungeonLevel && dungeonObjectsByLevel.spawnableObjectRatioList.Count > 0)
@@ -185,7 +178,6 @@ public class RoomTemplateSO : ScriptableObject
             }
         }
 
-        // Check spawn positions populated
         HelperUtilities.ValidateCheckEnumerableValues(this, nameof(spawnPositionArray), spawnPositionArray);
     }
 

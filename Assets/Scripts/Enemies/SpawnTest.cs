@@ -9,20 +9,17 @@ public class SpawnTest : MonoBehaviour
 
     private void OnEnable()
     {
-        // subscribe to change of room
         StaticEventHandler.OnRoomChanged += StaticEventHandler_OnRoomChanged;
     }
 
     private void OnDisable()
     {
-        // unsubscribe to change of room
         StaticEventHandler.OnRoomChanged -= StaticEventHandler_OnRoomChanged;
     }
 
 
     private void StaticEventHandler_OnRoomChanged(RoomChangedEventArgs roomChangedEventArgs)
     {
-        // Destroy any spawned enemies
         if (instantiatedEnemyList != null && instantiatedEnemyList.Count > 0)
         {
             foreach (GameObject enemy in instantiatedEnemyList)
@@ -37,7 +34,6 @@ public class SpawnTest : MonoBehaviour
         {
             testLevelSpawnList = roomTemplate.enemiesByLevelList;
 
-            // Create RandomSpawnableObject helper class
             randomEnemyHelperClass = new RandomSpawnableObject<EnemyDetailsSO>(testLevelSpawnList);
         }
     }

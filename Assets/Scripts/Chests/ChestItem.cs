@@ -17,9 +17,6 @@ public class ChestItem : MonoBehaviour
         materializeEffect = GetComponent<MaterializeEffect>();
     }
 
-    /// <summary>
-    /// Initialize the chest item
-    /// </summary>
     public void Initialize(Sprite sprite, string text, Vector3 spawnPosition, Color materializeColor)
     {
         spriteRenderer.sprite = sprite;
@@ -28,9 +25,6 @@ public class ChestItem : MonoBehaviour
         StartCoroutine(MaterializeItem(materializeColor, text));
     }
 
-    /// <summary>
-    /// Materialize the chest item
-    /// </summary>
     private IEnumerator MaterializeItem(Color materializeColor, string text)
     {
         SpriteRenderer[] spriteRendererArray = new SpriteRenderer[] { spriteRenderer };

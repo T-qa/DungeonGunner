@@ -1,7 +1,6 @@
 using System.Collections;
 using UnityEngine;
 
-// Don't add require directives since we're destroying the components when the item is destroyed
 [DisallowMultipleComponent]
 public class DestroyableItem : MonoBehaviour
 {
@@ -56,27 +55,21 @@ public class DestroyableItem : MonoBehaviour
 
     private IEnumerator PlayAnimation()
     {
-        // Destroy the trigger collider
         Destroy(boxCollider2D);
 
-        // Play sound effect
         if (destroySoundEffect != null)
         {
             SoundEffectManager.Instance.PlaySoundEffect(destroySoundEffect);
         }
 
-        // Trigger the destroy animation
         animator.SetBool(Settings.destroy, true);
 
 
-        // Let the animation play through
         while (!animator.GetCurrentAnimatorStateInfo(0).IsName(Settings.stateDestroyed))
         {
             yield return null;
         }
 
-        // Then destroy all components other than the Sprite Renderer to just display the final
-        // sprite in the animation
         Destroy(animator);
         Destroy(receiveContactDamage);
         Destroy(health);

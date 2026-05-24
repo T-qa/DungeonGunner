@@ -191,7 +191,6 @@ public class GameResources : MonoBehaviour
 
     #region Validation
 #if UNITY_EDITOR
-    // Validate the scriptable object details entered
     private void OnValidate()
     {
         HelperUtilities.ValidateCheckNullValue(this, nameof(roomNodeTypeList), roomNodeTypeList);

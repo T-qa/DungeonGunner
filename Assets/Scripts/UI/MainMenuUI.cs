@@ -34,28 +34,20 @@ public class MainMenuUI : MonoBehaviour
 
     private void Start()
     {
-        // Play Music
         MusicManager.Instance.PlayMusic(GameResources.Instance.mainMenuMusic, 0f, 2f);
 
-        // Load Character selector scene additively
         SceneManager.LoadScene("CharacterSelectorScene", LoadSceneMode.Additive);
 
         returnToMainMenuButton.SetActive(false);
     }
 
 
-    /// <summary>
-    /// Called from the Play Game / Enter The Dungeon Button
-    /// </summary>
     public void PlayGame()
     {
         SceneManager.LoadScene("MainGameScene");
     }
 
 
-    /// <summary>
-    /// Called from the High Scores Button
-    /// </summary>
     public void LoadHighScores()
     {
         playButton.SetActive(false);
@@ -68,13 +60,9 @@ public class MainMenuUI : MonoBehaviour
 
         returnToMainMenuButton.SetActive(true);
 
-        // Load High Score scene additively
         SceneManager.LoadScene("HighScoreScene", LoadSceneMode.Additive);
     }
 
-    /// <summary>
-    /// Called from the Return To Main Menu Button
-    /// </summary>
     public void LoadCharacterSelector()
     {
         returnToMainMenuButton.SetActive(false);
@@ -95,13 +83,9 @@ public class MainMenuUI : MonoBehaviour
         highScoresButton.SetActive(true);
         instructionsButton.SetActive(true);
 
-        // Load character selector scene additively
         SceneManager.LoadScene("CharacterSelectorScene", LoadSceneMode.Additive);
     }
 
-    /// <summary>
-    /// Called from the Instructions Button
-    /// </summary>
     public void LoadInstructions()
     {
         playButton.SetActive(false);
@@ -114,13 +98,9 @@ public class MainMenuUI : MonoBehaviour
 
         returnToMainMenuButton.SetActive(true);
 
-        // Load instructions scene additively
         SceneManager.LoadScene("InstructionsScene", LoadSceneMode.Additive);
     }
 
-    /// <summary>
-    /// Quit the game - this method is called from the onClick event set in the inspector
-    /// </summary>
     public void QuitGame()
     {
         Application.Quit();
@@ -129,7 +109,6 @@ public class MainMenuUI : MonoBehaviour
 
     #region Validation
 #if UNITY_EDITOR
-    // Validate the scriptable object details entered
     private void OnValidate()
     {
         HelperUtilities.ValidateCheckNullValue(this, nameof(playButton), playButton);

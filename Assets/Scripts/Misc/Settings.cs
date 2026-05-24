@@ -24,7 +24,6 @@ public static class Settings
 
 
     #region ANIMATOR PARAMETERS
-    // Animator parameters - Player
     public static int aimUp = Animator.StringToHash("aimUp");
     public static int aimDown = Animator.StringToHash("aimDown");
     public static int aimUpRight = Animator.StringToHash("aimUpRight");
@@ -44,14 +43,11 @@ public static class Settings
     public static int use = Animator.StringToHash("use");
     public static float baseSpeedForPlayerAnimations = 8f;
 
-    // Animator parameters - Enemy
     public static float baseSpeedForEnemyAnimations = 3f;
 
 
-    // Animator parameters - Door
     public static int open = Animator.StringToHash("open");
 
-    // Animator parameters - DamageableDecoration
     public static int destroy = Animator.StringToHash("destroy");
     public static String stateDestroyed = "Destroyed";
 

@@ -24,7 +24,6 @@ public class CharacterSelectorUI : MonoBehaviour
 
     private void Awake()
     {
-        // Load resources
         playerSelectionPrefab = GameResources.Instance.playerSelectionPrefab;
         playerDetailsList = GameResources.Instance.playerDetailsList;
         currentPlayer = GameResources.Instance.currentPlayer;
@@ -32,7 +31,6 @@ public class CharacterSelectorUI : MonoBehaviour
 
     private void Start()
     {
-        // Instatiate player characters
         for (int i = 0; i < playerDetailsList.Count; i++)
         {
             GameObject playerSelectionObject = Instantiate(playerSelectionPrefab, characterSelector);
@@ -43,14 +41,10 @@ public class CharacterSelectorUI : MonoBehaviour
 
         playerNameInput.text = currentPlayer.playerName;
 
-        // Initialise the current player
         currentPlayer.playerDetails = playerDetailsList[selectedPlayerIndex];
 
     }
 
-    /// <summary>
-    /// Populate player character details for display
-    /// </summary>
     private void PopulatePlayerDetails(PlayerSelectionUI playerSelection, PlayerDetailsSO playerDetails)
     {
         playerSelection.playerHandSpriteRenderer.sprite = playerDetails.playerHandSprite;
@@ -59,9 +53,6 @@ public class CharacterSelectorUI : MonoBehaviour
         playerSelection.animator.runtimeAnimatorController = playerDetails.runtimeAnimatorController;
     }
 
-    /// <summary>
-    /// Select next character - this method is called from the onClick event set in the inspector
-    /// </summary>
     public void NextCharacter()
     {
         if (selectedPlayerIndex >= playerDetailsList.Count - 1)
@@ -74,9 +65,6 @@ public class CharacterSelectorUI : MonoBehaviour
     }
 
 
-    /// <summary>
-    /// Select previous character - this method is called from the onClick event set in the inspector
-    /// </summary>
     public void PreviousCharacter()
     {
         if (selectedPlayerIndex == 0)
@@ -114,9 +102,6 @@ public class CharacterSelectorUI : MonoBehaviour
         characterSelector.localPosition = new Vector3(targetLocalXPosition, characterSelector.localPosition.y, 0f);
     }
 
-    /// <summary>
-    /// Update player name - this method is called from the field changed event set in the inspector
-    /// </summary>
     public void UpdatePlayerName()
     {
         playerNameInput.text = playerNameInput.text.ToUpper();
